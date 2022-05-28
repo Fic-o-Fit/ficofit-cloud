@@ -34,7 +34,7 @@ Clone the repositories, Install the devDependencies and start the server.
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node app.js`
 connected to mongoDB
-Server started on <host-ip> port 5000
+Server started on localhost port 5000
 ```
 
 ### API References
