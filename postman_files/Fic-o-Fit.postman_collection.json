@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "d1500313-defb-46d8-a017-fc2514586d9d",
+		"name": "Fic-o-fit Private API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15765580"
+	},
+	"item": [
+		{
+			"name": "Atlas System Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{emailAccount}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "{{passwordAccount}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/status",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas - Calories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/calories",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"calories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas - Calories Burn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "weight",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "reps",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "newplayerone@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/calories-burn",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"calories-burn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Auth - Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "New Player ",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "newplayer@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "virtual-password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/signup",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Auth - Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "newplayerone@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "virtual-password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/login",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Auth - Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "iamplayerthree@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "refreshToken",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOGZiMzYyMWZlYzNlMDZmZTVhMmRkYyIsImVtYWlsIjoiaWFtcGxheWVydGhyZWVAZ21haWwuY29tIn0sImlhdCI6MTY1MzU4NTkyNSwiZXhwIjoxNjUzNjcyMzI1fQ.bJ_D6dIs_eULYDMrEltlsl2BemmUX2qDU9GzqslBEsA",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/token",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Auth - Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "iamplayerthree@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "virtual-password",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/logout",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Scoring - Submit Score",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "iamplayerone@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "score",
+							"value": "88",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/submit-score",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"submit-score"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Scoring - Submit Weight",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "newplayerone@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "88",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/submit-weight",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"submit-weight"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Scoring - Leaderboard",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "Player1@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{host}}:{{atlasPort}}/score",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{atlasPort}}",
+					"path": [
+						"score"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
