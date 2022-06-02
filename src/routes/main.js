@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const asyncMiddleware = require("../middleware/asyncMiddleware");
+
 const userModel = require("../model/userModel");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -12,15 +12,19 @@ router.get("/status", (req, res, next) => {
   res.json({ status: "ok" });
 });
 
-router.post(
-  "/signup",
-  passport.authenticate("signup", { session: false }),
-  (req, res, next) => {
-    const { name, email, password } = req.body;
+router.post("/signup", async (req, res, next) => {
+  const { name, email, password } = req.body;
+  const userInfo = await userModel.findOne({ email: email });
+
+  if (userInfo) {
+    res.status(200).json({ status: "Email already registered" });
+  }
+
+  if (!userInfo) {
     userModel.create({ email, password, name });
     res.status(200).json({ status: "signup successful" });
   }
-);
+});
 
 router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
@@ -48,6 +52,7 @@ router.post("/login", async (req, res, next) => {
           expiresIn: 86400,
         });
 
+        res.cookie("emailSession", user.email);
         res.cookie("jwt", token);
         res.cookie("refreshJwt", refreshToken);
 

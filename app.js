@@ -38,7 +38,7 @@ app.use((err, req, res, next) => {
   res.json({ error: err });
 });
 
-const port = 5000;
+const port = 6000;
 const command = "curl ifconfig.me";
 
 app.listen(port, () => {
