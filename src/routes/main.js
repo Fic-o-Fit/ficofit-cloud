@@ -46,7 +46,7 @@ router.post("/login", async (req, res, next) => {
         };
 
         const token = jwt.sign({ user: body }, "top-secret", {
-          expiresIn: 300,
+          expiresIn: 1800,
         });
         const refreshToken = jwt.sign({ user: body }, "top-secret-refresh", {
           expiresIn: 86400,
