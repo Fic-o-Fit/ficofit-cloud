@@ -15,7 +15,13 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    // required: true,
+  },
+  gender: {
+    type: String,
+  },
+  height: {
+    type: Number,
+    default: 0,
   },
   weight: {
     type: Number,
