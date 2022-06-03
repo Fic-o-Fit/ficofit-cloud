@@ -48,11 +48,17 @@ router.post("/submit-score", async (req, res, next) => {
 
 router.get("/score", async (req, res, next) => {
   const users = await userModel
-    .find({}, "name highScore -_id")
-    .sort({ highScore: -1 })
-    .limit(10);
+    .find({}, "name email highScore _id")
+    .sort({ highScore: -1 });
+  // .limit(10);
+  let leaderboardScore = users.map((user, index) => ({
+    position: index + 1,
+    name: user.name,
+    email: user.email,
+    score: user.highScore,
+  }));
   res.status(200);
-  res.json(users);
+  res.json(leaderboardScore);
 });
 
 router.post("/submit-weight", async (req, res, next) => {
