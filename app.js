@@ -38,7 +38,7 @@ app.use((err, req, res, next) => {
   res.json({ error: err });
 });
 
-const port = 6000;
+const port = 5000;
 const command = "curl ifconfig.me && export TF_CPP_MIN_LOG_LEVEL=2";
 
 app.listen(port, () => {
