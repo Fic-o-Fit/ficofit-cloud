@@ -1,15 +1,16 @@
-const cookieParser = require("cookie-parser");
 const express = require("express");
 const userModel = require("../model/userModel");
 const router = express.Router();
+const { getCookieEmail } = require("../helper/cookie");
 
 router.post("/calories-burn", async (req, res, next) => {
   const tf = require("@tensorflow/tfjs");
   const tfnode = require("@tensorflow/tfjs-node");
+  let emailSession = getCookieEmail(req);
 
-  const { email, reps } = req.body;
+  const { reps } = req.body;
   const userInfo = await userModel
-    .findOne({ email }, "name weight -_id")
+    .findOne({ emailSession }, "name weight -_id")
     .limit(1);
 
   if (userInfo.weight === 0) {
@@ -38,8 +39,9 @@ router.post("/calories-burn", async (req, res, next) => {
 });
 
 router.post("/submit-score", async (req, res, next) => {
-  const { email, score } = req.body;
-  await userModel.updateOne({ email }, { highScore: score });
+  let emailSession = getCookieEmail(req);
+  const { score } = req.body;
+  await userModel.updateOne({ emailSession }, { highScore: score });
   res.status(200);
   res.json({ status: "ok" });
 });
@@ -54,9 +56,10 @@ router.get("/score", async (req, res, next) => {
 });
 
 router.post("/submit-weight", async (req, res, next) => {
-  const { email, weight } = req.body;
+  let emailSession = getCookieEmail(req);
+  const { weight } = req.body;
 
-  await userModel.updateOne({ email }, { weight: weight });
+  await userModel.updateOne({ emailSession }, { weight: weight });
   res.status(200);
   res.json({ status: "ok" });
 });
