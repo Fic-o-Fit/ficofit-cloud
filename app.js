@@ -25,6 +25,7 @@ mongoose.connection.on("connected", () => {
   console.log("connected to mongoDB");
 });
 
+app.use("/", express.static("public"));
 app.use("/", mainRoutes);
 app.use("/", passport.authenticate("jwt", { session: false }), secureRoutes);
 
