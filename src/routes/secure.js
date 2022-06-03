@@ -61,6 +61,24 @@ router.get("/score", async (req, res, next) => {
   res.json(leaderboardScore);
 });
 
+router.get("/score/me", async (req, res, next) => {
+  let _email = await getCookieEmail(req);
+  const users = await userModel
+    .find({}, "name email highScore -_id")
+    .sort({ highScore: -1 });
+  // .limit(10);
+  const user = await userModel.find({ email: _email }, "name email highScore");
+  let index = await users.findIndex((user) => user.email === _email);
+
+  res.status(200);
+  res.json({
+    position: index + 1,
+    name: user[0].name,
+    email: _email,
+    score: user[0].highScore,
+  });
+});
+
 router.post("/submit-weight", async (req, res, next) => {
   let emailSession = getCookieEmail(req);
   const { weight } = req.body;
