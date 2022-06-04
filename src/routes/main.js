@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const { check, validationResult } = require("express-validator/check");
 const userModel = require("../model/userModel");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -12,19 +12,41 @@ router.get("/status", (req, res, next) => {
   res.json({ status: "ok" });
 });
 
-router.post("/signup", async (req, res, next) => {
-  const { name, email, password } = req.body;
-  const userInfo = await userModel.findOne({ email: email });
-
-  if (userInfo) {
-    res.status(400).json({ status: "Email already registered" });
+router.post(
+  "/signup",
+  [
+    check("name", "Please Enter a Valid name").not().isEmpty(),
+    check("email", "Please enter a valid email").isEmail(),
+    check("password", "Please enter a valid password").isLength({
+      min: 6,
+    }),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    let { name, email, password } = req.body;
+    email = email.toLowerCase();
+    try {
+      let user = await userModel.findOne({
+        email,
+      });
+      if (user) {
+        return res.status(400).json({
+          message: "User Already Exists",
+        });
+      }
+      await userModel.create({ name, email, password });
+      res.status(200).json({ status: "signup successful" });
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).send("Error in Saving");
+    }
   }
-
-  if (!userInfo) {
-    userModel.create({ email, password, name });
-    res.status(200).json({ status: "signup successful" });
-  }
-});
+);
 
 router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
