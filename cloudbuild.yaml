@@ -33,7 +33,11 @@ steps:
         "gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA",
         "--region",
         "asia-southeast2",
+        "--port",
+        5000,
+        "--allow-unauthenticated",
       ]
+
 timeout: 1600s
 images:
   - "gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA"
