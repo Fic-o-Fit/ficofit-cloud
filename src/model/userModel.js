@@ -15,6 +15,7 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
+    required: true,
   },
   gender: {
     type: String,
@@ -40,6 +41,10 @@ const userSchema = new Schema({
   },
   resetTokenExp: {
     type: Date,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
 });
 
