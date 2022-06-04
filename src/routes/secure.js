@@ -3,6 +3,17 @@ const userModel = require("../model/userModel");
 const router = express.Router();
 const { getCookieEmail } = require("../helper/cookie");
 
+router.get("/profile", async (req, res, next) => {
+  let emailSession = getCookieEmail(req);
+  const user = await userModel.find(
+    { email: emailSession },
+    "_id name email gender height weight highScore"
+  );
+
+  res.status(200);
+  res.json(user[0]);
+});
+
 router.post("/calories-burn", async (req, res, next) => {
   const tf = require("@tensorflow/tfjs");
   const tfnode = require("@tensorflow/tfjs-node");
