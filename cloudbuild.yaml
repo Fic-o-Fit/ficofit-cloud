@@ -22,6 +22,18 @@ steps:
     args:
       - push
       - "gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA"
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "$REPO_NAME:$BRANCH_NAME",
+        "--image",
+        "gcr.io/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA",
+        "--region",
+        "$LOCATION",
+      ]
 timeout: 1600s
 images:
   - "gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA"
