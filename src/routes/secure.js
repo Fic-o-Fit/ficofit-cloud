@@ -41,7 +41,7 @@ router.post("/calories-burn", async (req, res, next) => {
 router.post("/submit-score", async (req, res, next) => {
   let emailSession = getCookieEmail(req);
   const { score } = req.body;
-  await userModel.updateOne({ emailSession }, { highScore: score });
+  await userModel.updateOne({ email: emailSession }, { highScore: score });
   res.status(200);
   res.json({ status: "ok" });
 });
