@@ -17,7 +17,7 @@ router.post("/signup", async (req, res, next) => {
   const userInfo = await userModel.findOne({ email: email });
 
   if (userInfo) {
-    res.status(200).json({ status: "Email already registered" });
+    res.status(400).json({ status: "Email already registered" });
   }
 
   if (!userInfo) {
