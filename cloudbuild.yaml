@@ -38,6 +38,5 @@ steps:
         "--allow-unauthenticated",
       ]
 
-timeout: 1600s
 images:
   - "gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME:$SHORT_SHA"
