@@ -77,6 +77,7 @@ router.post("/login", async (req, res, next) => {
         res.cookie("emailSession", user.email);
         res.cookie("jwt", token);
         res.cookie("refreshJwt", refreshToken);
+        res.cookie("Content-Type", "application/json");
 
         tokenList[refreshToken] = {
           token,
