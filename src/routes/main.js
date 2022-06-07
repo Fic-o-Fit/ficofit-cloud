@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const userModel = require("../model/userModel");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -77,6 +77,7 @@ router.post("/login", async (req, res, next) => {
         res.cookie("emailSession", user.email);
         res.cookie("jwt", token);
         res.cookie("refreshJwt", refreshToken);
+        res.cookie("Content-Type", "application/json");
 
         tokenList[refreshToken] = {
           token,
