@@ -26,7 +26,7 @@ router.post("/calories-burn", async (req, res, next) => {
 
   if (userInfo.weight === 0) {
     res.status(400);
-    res.json({ weight: "weight is null" });
+    res.json({ weight: "Weight is empty, you need to update with correct data" });
   }
 
   if (userInfo.weight > 30) {
@@ -54,7 +54,7 @@ router.post("/submit-score", async (req, res, next) => {
   const { score } = req.body;
   await userModel.updateOne({ email: emailSession }, { highScore: score });
   res.status(200);
-  res.json({ status: "ok" });
+  res.json({ status: "Score has been saved" });
 });
 
 router.get("/score", async (req, res, next) => {
@@ -96,7 +96,7 @@ router.post("/submit-weight", async (req, res, next) => {
 
   await userModel.updateOne({ emailSession }, { weight: weight });
   res.status(200);
-  res.json({ status: "ok" });
+  res.json({ status: "Weight has been saved" });
 });
 
 router.get("/calories", async (req, res, next) => {

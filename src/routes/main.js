@@ -36,14 +36,14 @@ router.post(
       });
       if (user) {
         return res.status(400).json({
-          message: "User Already Exists",
+          message: "Sorry, user already exists",
         });
       }
       await userModel.create({ name, email, password });
-      res.status(200).json({ status: "signup successful" });
+      res.status(200).json({ status: "Signup successful" });
     } catch (err) {
       console.log(err.message);
-      res.status(500).send("Error in Saving");
+      res.status(500).send("Error occured when saving user data");
     }
   }
 );
@@ -106,7 +106,7 @@ router.post("/token", (req, res, info) => {
     res.json({ token });
   } else {
     res.status(401);
-    res.json({ message: "Unauthorized" });
+    res.json({ message: "User has to be authenticated first" });
   }
 });
 
@@ -119,7 +119,7 @@ router.post("/logout", (req, res) => {
   }
 
   res.status(200);
-  res.json({ message: "logged out" });
+  res.json({ message: "User has been logged out successfully" });
 });
 
 module.exports = router;
