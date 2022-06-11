@@ -1,4 +1,5 @@
-FROM node:16
+FROM node:17-alpine3.14
+RUN apk add libc6-compat
 
 WORKDIR /app
 COPY package.json /app
