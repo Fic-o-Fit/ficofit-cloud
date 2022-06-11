@@ -21,7 +21,7 @@ router.post("/calories-counter", async (req, res, next) => {
 
   const { reps } = req.body;
   const userInfo = await userModel
-    .findOne({ emailSession }, "name weight -_id")
+    .findOne({ email: emailSession }, "name weight -_id")
     .limit(1);
 
   if (userInfo.weight === 0) {
@@ -96,7 +96,7 @@ router.post("/submit-weight", async (req, res, next) => {
   let emailSession = getCookieEmail(req);
   const { weight } = req.body;
 
-  await userModel.updateOne({ emailSession }, { weight: weight });
+  await userModel.updateOne({ email: emailSession }, { weight: weight });
   res.status(200);
   res.json({ status: "Weight has been saved" });
 });
