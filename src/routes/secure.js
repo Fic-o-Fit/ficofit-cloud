@@ -19,7 +19,6 @@ router.post("/calories-counter", async (req, res, next) => {
   const tfnode = require("@tensorflow/tfjs-node");
   let emailSession = getCookieEmail(req);
 
-  const { reps } = req.body;
   const userInfo = await userModel
     .findOne({ emailSession }, "name weight -_id")
     .limit(1);
@@ -32,6 +31,7 @@ router.post("/calories-counter", async (req, res, next) => {
   }
 
   if (userInfo.weight > 30) {
+    const { reps } = req.body;
     const handler = tfnode.io.fileSystem(process.env.MODEL_JSON_URL);
     let model = await tf.loadLayersModel(handler);
 
