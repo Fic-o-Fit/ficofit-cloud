@@ -1,5 +1,4 @@
 FROM node:18
-RUN apk add libc6-compat
 
 WORKDIR /app
 COPY package.json /app
