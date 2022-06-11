@@ -32,12 +32,11 @@
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/status",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/status",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"status"
 					]
@@ -46,17 +45,54 @@
 			"response": []
 		},
 		{
-			"name": "Atlas - Calories",
+			"name": "Atlas Profile - Info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{emailAccount}}",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "{{passwordAccount}}",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{hostname}}/profile",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Calories - Info",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/calories",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/calories",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"calories"
 					]
@@ -65,7 +101,7 @@
 			"response": []
 		},
 		{
-			"name": "Atlas - Calories Burn",
+			"name": "Atlas Calories - Counter",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -86,19 +122,19 @@
 						{
 							"key": "email",
 							"value": "newplayerone@gmail.com",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/calories-burn",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/calories-counter",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
-						"calories-burn"
+						"calories-counter"
 					]
 				}
 			},
@@ -131,16 +167,36 @@
 							"key": "password",
 							"value": "virtual-password",
 							"type": "text"
+						},
+						{
+							"key": "height",
+							"value": "",
+							"description": "CM",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "weight",
+							"value": "",
+							"description": "KG",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "gender",
+							"value": "",
+							"description": "M=Male, F=Female",
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/signup",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/signup",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"signup"
 					]
@@ -163,7 +219,7 @@
 						},
 						{
 							"key": "email",
-							"value": "newplayerone@gmail.com",
+							"value": "iamplayerfive@gmail.com",
 							"type": "text"
 						},
 						{
@@ -174,12 +230,11 @@
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/login",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/login",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"login"
 					]
@@ -213,12 +268,11 @@
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/token",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/token",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"token"
 					]
@@ -255,12 +309,11 @@
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/logout",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/logout",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"logout"
 					]
@@ -284,22 +337,22 @@
 						{
 							"key": "email",
 							"value": "iamplayerone@gmail.com",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						},
 						{
 							"key": "score",
-							"value": "88",
+							"value": "222",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/submit-score",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/submit-score",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"submit-score"
 					]
@@ -333,12 +386,11 @@
 					]
 				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/submit-weight",
-					"protocol": "http",
+					"raw": "https://{{hostname}}/submit-weight",
+					"protocol": "https",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"submit-weight"
 					]
@@ -348,36 +400,36 @@
 		},
 		{
 			"name": "Atlas Scoring - Leaderboard",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "Player1@test.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "12345",
-							"type": "text"
-						}
-					]
-				},
 				"url": {
-					"raw": "http://{{host}}:{{atlasPort}}/score",
+					"raw": "http://{{hostname}}/score",
 					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"{{hostname}}"
 					],
-					"port": "{{atlasPort}}",
 					"path": [
 						"score"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atlas Scoring - Your Leaderboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/score/me",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"score",
+						"me"
 					]
 				}
 			},
