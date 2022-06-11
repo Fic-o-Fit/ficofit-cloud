@@ -1,4 +1,4 @@
-FROM node:17-alpine3.14
+FROM node:18
 RUN apk add libc6-compat
 
 WORKDIR /app
