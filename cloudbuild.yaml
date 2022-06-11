@@ -10,6 +10,7 @@ steps:
     env:
       - "MONGO_CONNECTION_URL=${_MONGO_CONNECTION_URL}"
       - "MODEL_JSON_URL=${_MODEL_JSON_URL}"
+      - "TF_CPP_MIN_LOG_LEVEL={_TF_CPP_MIN_LOG_LEVEL}"
     args:
       - run
       - create-env
