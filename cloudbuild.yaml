@@ -4,6 +4,7 @@ steps:
       - "-c"
       - |
         sed -i 's/NIGHTLYBUILD/$SHORT_SHA/g' public/index.html
+        export TF_CPP_MIN_LOG_LEVEL=2
     entrypoint: bash
   - name: gcr.io/cloud-builders/npm
     env:
