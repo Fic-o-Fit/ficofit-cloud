@@ -4,13 +4,11 @@ steps:
       - "-c"
       - |
         sed -i 's/NIGHTLYBUILD/$SHORT_SHA/g' public/index.html
-        export TF_CPP_MIN_LOG_LEVEL=2
     entrypoint: bash
   - name: gcr.io/cloud-builders/npm
     env:
       - "MONGO_CONNECTION_URL=${_MONGO_CONNECTION_URL}"
       - "MODEL_JSON_URL=${_MODEL_JSON_URL}"
-      - "TF_CPP_MIN_LOG_LEVEL={_TF_CPP_MIN_LOG_LEVEL}"
     args:
       - run
       - create-env
