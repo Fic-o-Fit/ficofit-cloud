@@ -32,18 +32,14 @@ router.post("/calories-counter", async (req, res, next) => {
 
   if (userInfo.weight > 30) {
     const { reps } = req.body;
-    console.log(reps);
     const handler = tfnode.io.fileSystem(process.env.MODEL_JSON_URL);
     let model = await tf.loadLayersModel(handler);
 
     let input = tf.tensor2d([userInfo.weight / 100.0], [1, 1]);
     let result = model.predict(input);
-    console.log(`result ${result}`);
     let cal_per_rep = result.dataSync();
     cal_per_rep = Math.round(cal_per_rep[0] * 10000) / 10000;
-    console.log(`cal_per_rep ${cal_per_rep}`);
     let cal_burned = cal_per_rep * reps;
-    console.log(`cal_burned ${cal_burned} = ${cal_per_rep} * ${reps}`);
 
     res.status(200);
     res.json({
