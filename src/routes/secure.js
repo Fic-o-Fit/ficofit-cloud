@@ -14,7 +14,7 @@ router.get("/profile", async (req, res, next) => {
   res.json(user[0]);
 });
 
-router.post("/calories-burn", async (req, res, next) => {
+router.post("/calories-counter", async (req, res, next) => {
   const tf = require("@tensorflow/tfjs");
   const tfnode = require("@tensorflow/tfjs-node");
   let emailSession = getCookieEmail(req);
@@ -26,7 +26,9 @@ router.post("/calories-burn", async (req, res, next) => {
 
   if (userInfo.weight === 0) {
     res.status(400);
-    res.json({ weight: "Weight is empty, you need to update with correct data" });
+    res.json({
+      weight: "Weight is empty, you need to update with correct data",
+    });
   }
 
   if (userInfo.weight > 30) {
